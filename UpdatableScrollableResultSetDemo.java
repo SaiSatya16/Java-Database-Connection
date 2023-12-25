@@ -11,7 +11,8 @@ public class UpdatableScrollableResultSetDemo {
     public static void main(String[] args) {
         try {
             // Connect to your SQLite database
-            Connection connection = DriverManager.getConnection("jdbc:sqlite:sample2.db");
+            Connection connection = DriverManager.getConnection("jdbc:sqlite:sample3.db");
+           
 
             // Fetch the data into a list
             List<String> dataList = fetchData(connection);
@@ -56,11 +57,38 @@ public class UpdatableScrollableResultSetDemo {
     }
 
     private static void updateDatabase(Connection connection, List<String> dataList) throws SQLException {
-        // Perform database update based on changes in dataList
-        // For example, update the database with dataList modifications
-        // You would typically use prepared statements for updates or inserts.
-        // Iterate through dataList and update the database accordingly.
+        String name1 = dataList.get(0);
+        String name2 = dataList.get(1);
+    
+        // Fetch rows for IDs 1 and 2
+        // Statement statement = connection.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
+
+        // ResultSet resultSet = statement.executeQuery("SELECT * FROM Satya WHERE id IN (1, 2)");
+    
+        // // Update the names after moving to the respective rows
+        // while (resultSet.next()) {
+        //     int id = resultSet.getInt("id");
+        //     if (id == 1) {
+        //         resultSet.updateString("name", name2);
+        //         resultSet.updateRow();
+        //     } else if (id == 2) {
+        //         resultSet.updateString("name", name1);
+        //         resultSet.updateRow();
+        //     }
+        // }
+    
+        // resultSet.close();
+        // statement.close();
+
+        Statement statement = connection.createStatement();
+        String updateQuery = "UPDATE Satya SET name = '" + name2 + "' WHERE id = 1; " +
+                            "UPDATE Satya SET name = '" + name1 + "' WHERE id = 2;";
+        statement.executeUpdate(updateQuery);
+
+    
+        System.out.println("Database updated successfully!");
     }
+    
 
     private static void displayData(List<String> dataList) {
         for (String data : dataList) {

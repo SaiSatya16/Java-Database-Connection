@@ -11,7 +11,7 @@ public class CreateSQLiteDatabase {
 
         try {
             // SQLite database file path
-            String url = "jdbc:sqlite:sample2.db"; // Replace with your desired database file path
+            String url = "jdbc:sqlite:sample3.db"; // Replace with your desired database file path
 
             // Establish connection
             connection = DriverManager.getConnection(url);

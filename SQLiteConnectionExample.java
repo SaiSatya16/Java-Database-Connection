@@ -9,7 +9,7 @@ public class SQLiteConnectionExample {
 
         try {
             // SQLite connection string
-            String url = "jdbc:sqlite:sample2.db"; // Replace with your SQLite database file path
+            String url = "jdbc:sqlite:sample3.db"; // Replace with your SQLite database file path
             
             // Establish connection
             connection = DriverManager.getConnection(url);
@@ -24,8 +24,9 @@ public class SQLiteConnectionExample {
                 // Example: Print data from columns
                 int id = resultSet.getInt("id");
                 String name = resultSet.getString("name");
+                int age = resultSet.getInt("age");  
                 // Process retrieved data
-                System.out.println("ID: " + id + ", Name: " + name);
+                System.out.println("ID: " + id + ", Name: " + name + ", Age: " + age);
             }
         } catch (SQLException e) {
             e.printStackTrace();
