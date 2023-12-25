@@ -11,7 +11,7 @@ public class CreateSQLiteDatabase {
 
         try {
             // SQLite database file path
-            String url = "jdbc:sqlite:sample3.db"; // Replace with your desired database file path
+            String url = "jdbc:sqlite:/Users/saisatyajonnalagadda/eclipse-workspace/Nandinijava/src/mydatabase.db"; // Replace with your desired database file path
 
             // Establish connection
             connection = DriverManager.getConnection(url);
@@ -20,12 +20,14 @@ public class CreateSQLiteDatabase {
             // Create a statement
             statement = connection.createStatement();
 
-            // SQL command to create a new table
-            String createTableQuery = "CREATE TABLE IF NOT EXISTS Satya ("
-                    + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-                    + "name TEXT NOT NULL,"
-                    + "age INTEGER"
+            // SQL command to create a new table users with id, username, email, password columns
+            String createTableQuery = "CREATE TABLE IF NOT EXISTS users (\n"
+                    + "	id integer PRIMARY KEY,\n"
+                    + "	username text NOT NULL,\n"
+                    + "	email text NOT NULL,\n"
+                    + "	password text NOT NULL\n"
                     + ");";
+            
 
             // Execute the SQL command to create a table
             statement.execute(createTableQuery);
